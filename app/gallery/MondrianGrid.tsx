@@ -5,14 +5,11 @@ import { useEffect, useState } from "react";
 
 type Placement = { row: number; col: number; rowSpan: number; colSpan: number };
 
-const COLS = 10;
-const ROWS = 8;
+const SIZE = 8; // 8x8 square grid = 64 cells
 const N = 37;
 
-type BlockSpec = { h: number; w: number; indices: number[] };
-
-// Build Mondrian layout with varied block sizes: try larger shapes first
-function buildLayout(specs: BlockSpec[]): Placement[] {
+// 37 blocks in 64 cells: 28 single (1x1) + 9 double (2x2) = 28 + 36 = 64 exactly
+function buildSquareLayout(twoByTwoIndices: number[]): Placement[] {
   const used = new Set<string>();
   const key = (r: number, c: number) => `${r},${c}`;
   const mark = (r: number, c: number, h: number, w: number) => {
@@ -20,13 +17,13 @@ function buildLayout(specs: BlockSpec[]): Placement[] {
       for (let x = c; x < c + w; x++) used.add(key(y, x));
   };
   const nextCell = () => {
-    for (let r = 0; r < ROWS; r++)
-      for (let c = 0; c < COLS; c++)
+    for (let r = 0; r < SIZE; r++)
+      for (let c = 0; c < SIZE; c++)
         if (!used.has(key(r, c))) return { r, c };
     return null;
   };
   const fits = (r: number, c: number, h: number, w: number) => {
-    if (r + h > ROWS || c + w > COLS) return false;
+    if (r + h > SIZE || c + w > SIZE) return false;
     for (let y = r; y < r + h; y++)
       for (let x = c; x < c + w; x++)
         if (used.has(key(y, x))) return false;
@@ -37,15 +34,10 @@ function buildLayout(specs: BlockSpec[]): Placement[] {
     const cell = nextCell();
     if (!cell) break;
     const { r, c } = cell;
-    let placed = false;
-    for (const { h, w, indices } of specs) {
-      if (!indices.includes(idx) || !fits(r, c, h, w)) continue;
-      placements.push({ row: r, col: c, rowSpan: h, colSpan: w });
-      mark(r, c, h, w);
-      placed = true;
-      break;
-    }
-    if (!placed) {
+    if (twoByTwoIndices.includes(idx) && fits(r, c, 2, 2)) {
+      placements.push({ row: r, col: c, rowSpan: 2, colSpan: 2 });
+      mark(r, c, 2, 2);
+    } else {
       placements.push({ row: r, col: c, rowSpan: 1, colSpan: 1 });
       mark(r, c, 1, 1);
     }
@@ -53,37 +45,11 @@ function buildLayout(specs: BlockSpec[]): Placement[] {
   return placements;
 }
 
-// Specs: try bigger shapes first (order matters for packing). 10x8 = 80 cells, 37 blocks.
+// Three layouts: different indices get 2x2 blocks (9 each), rest 1x1. Fills 8x8 exactly.
 const LAYOUTS = [
-  buildLayout([
-    { h: 3, w: 3, indices: [0] },
-    { h: 3, w: 2, indices: [8] },
-    { h: 2, w: 3, indices: [5, 18] },
-    { h: 2, w: 2, indices: [12, 28] },
-    { h: 1, w: 3, indices: [3, 15, 30] },
-    { h: 3, w: 1, indices: [7, 22] },
-    { h: 1, w: 2, indices: [10, 25] },
-    { h: 2, w: 1, indices: [14, 32] },
-  ]),
-  buildLayout([
-    { h: 3, w: 3, indices: [11] },
-    { h: 2, w: 3, indices: [2, 21] },
-    { h: 3, w: 2, indices: [6, 24] },
-    { h: 2, w: 2, indices: [0, 16] },
-    { h: 3, w: 1, indices: [4, 19] },
-    { h: 1, w: 3, indices: [13, 31] },
-    { h: 1, w: 2, indices: [9, 26] },
-    { h: 2, w: 1, indices: [17, 33] },
-  ]),
-  buildLayout([
-    { h: 3, w: 2, indices: [1, 23] },
-    { h: 2, w: 3, indices: [8, 27] },
-    { h: 2, w: 2, indices: [5, 14, 30] },
-    { h: 3, w: 1, indices: [11, 25] },
-    { h: 1, w: 3, indices: [3, 20] },
-    { h: 1, w: 2, indices: [7, 18, 32] },
-    { h: 2, w: 1, indices: [10, 22, 34] },
-  ]),
+  buildSquareLayout([0, 4, 8, 12, 16, 20, 24, 28, 32]),
+  buildSquareLayout([2, 6, 10, 14, 18, 22, 26, 30, 34]),
+  buildSquareLayout([1, 5, 9, 13, 17, 21, 25, 29, 33]),
 ];
 
 function shuffle<T>(arr: T[]): T[] {
@@ -115,19 +81,25 @@ export function MondrianGrid({ images }: { images: GalleryImage[] }) {
 
   return (
     <div
-      className="mondrian-grid w-full"
+      className="mx-auto"
       style={{
-        display: "grid",
-        gridTemplateColumns: `repeat(${COLS}, 1fr)`,
-        gridTemplateRows: `repeat(${ROWS}, 1fr)`,
-        gap: "clamp(10px, 2vw, 20px)",
-        background: "#0a0a0a",
-        padding: "clamp(10px, 2vw, 20px)",
-        aspectRatio: `${COLS} / ${ROWS}`,
-        minHeight: "75vh",
-        maxHeight: "92vh",
+        width: "98vw",
+        maxWidth: "98vw",
+        aspectRatio: "1 / 1",
       }}
     >
+      <div
+        className="mondrian-grid w-full overflow-hidden"
+        style={{
+          display: "grid",
+          gridTemplateColumns: `repeat(${SIZE}, 1fr)`,
+          gridTemplateRows: `repeat(${SIZE}, 1fr)`,
+          gap: "clamp(8px, 1.5vw, 16px)",
+          background: "#0a0a0a",
+          padding: "clamp(8px, 1.5vw, 16px)",
+          aspectRatio: "1 / 1",
+        }}
+      >
       {images.map((img, i) => {
         const place = layout[i];
         const imageIndex = order[i];
@@ -151,6 +123,7 @@ export function MondrianGrid({ images }: { images: GalleryImage[] }) {
           </div>
         );
       })}
+      </div>
     </div>
   );
 }
