@@ -1,26 +1,26 @@
 export default function Home() {
   return (
     <div className="mx-auto max-w-xl px-6 py-16 font-sans">
-      <h1 className="mb-6 flex items-baseline gap-2 font-mono text-2xl font-bold tracking-tight text-[#e5e5e5]">
-        <span className="text-[#d97706]">&gt;</span>
+      <h1 className="mb-6 flex items-baseline gap-2 font-mono text-2xl font-bold tracking-tight text-[var(--foreground)]">
+        <span className="text-[var(--accent)]">&gt;</span>
         Your Name
       </h1>
 
-      <p className="mb-4 leading-7 text-[#e5e5e5]">
+      <p className="mb-4 leading-7 text-[var(--foreground)]">
         I&apos;m a developer and writer. [Add a sentence about where you work or
         what you do.] I&apos;ve been coding for [X] years.
       </p>
 
-      <p className="mb-8 leading-7 text-[#e5e5e5]">
+      <p className="mb-8 leading-7 text-[var(--foreground)]">
         My life&apos;s work is to [add your mission or interests]. I&apos;m
         [personal detail]. I last [listened to / read / built] [something
         recent].
       </p>
 
-      <p className="mb-3 font-mono text-sm font-medium tracking-wide text-[#737373]">
+      <p className="mb-3 font-mono text-sm font-medium tracking-wide text-[var(--muted)]">
         &gt; Some of my favorite writing includes:
       </p>
-      <ul className="mb-8 list-disc space-y-1 pl-5 leading-7 text-[#e5e5e5]">
+      <ul className="mb-8 list-disc space-y-1 pl-5 leading-7 text-[var(--foreground)]">
         <li>
           <a href="#">Post title one</a>
         </li>
@@ -32,7 +32,7 @@ export default function Home() {
         </li>
       </ul>
 
-      <p className="leading-7 text-[#e5e5e5]">
+      <p className="leading-7 text-[var(--foreground)]">
         You can <a href="/blog">read my writing</a> or <a href="#">code</a>, or{" "}
         <a href="#">follow me online</a>. I also [add other things you do].{" "}
         <a href="mailto:you@example.com">Reach out</a> if interested.

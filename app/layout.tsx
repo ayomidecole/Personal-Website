@@ -26,7 +26,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased bg-[#050810]`}
+        style={{
+          backgroundImage: `linear-gradient(180deg, rgba(5, 8, 16, 0.94) 0%, rgba(5, 8, 16, 0.98) 100%), url("/cyberpunk-bg.png")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
       >
         <FolderNav />
         <main className="min-h-screen p-8">{children}</main>
