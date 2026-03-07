@@ -11,8 +11,9 @@ export default function Projects() {
   return (
     <div className="mx-auto w-full max-w-[calc(100vw-2rem)] px-4 py-12 sm:px-6">
       <h1 className="mb-8 flex items-baseline gap-2 font-mono text-2xl font-bold tracking-tight text-[var(--foreground)]">
-        <span className="text-[var(--accent)]">&gt;</span>
-        Projects
+        <span className="terminal-prompt">&gt;</span>
+        <span>Projects</span>
+        <span className="terminal-cursor" aria-hidden />
       </h1>
       <div className="space-y-3">
         {projects.map((project, index) => (

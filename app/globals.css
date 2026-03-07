@@ -94,3 +94,24 @@ a:hover {
   background-color: var(--background);
   border-color: var(--border);
 }
+
+/* Terminal-style header: blinking cursor */
+@keyframes terminal-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.terminal-prompt {
+  color: var(--accent);
+  animation: terminal-blink 1s step-end infinite;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 0.2em;
+  height: 1em;
+  margin-left: 0.15em;
+  background-color: var(--accent);
+  vertical-align: -0.1em;
+  animation: terminal-blink 1s step-end infinite;
+}

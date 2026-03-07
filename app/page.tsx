@@ -2,8 +2,9 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-xl px-6 py-16 font-sans">
       <h1 className="mb-6 flex items-baseline gap-2 font-mono text-2xl font-bold tracking-tight text-[var(--foreground)]">
-        <span className="text-[var(--accent)]">&gt;</span>
-        Your Name
+        <span className="terminal-prompt">&gt;</span>
+        <span>Your Name</span>
+        <span className="terminal-cursor" aria-hidden />
       </h1>
 
       <p className="mb-4 leading-7 text-[var(--foreground)]">
