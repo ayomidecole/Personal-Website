@@ -28,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased bg-[#050810]`}
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(5, 8, 16, 0.94) 0%, rgba(5, 8, 16, 0.98) 100%), url("/cyberpunk-bg.png")`,
+          backgroundImage: `linear-gradient(180deg, rgba(5, 8, 16, 0.35) 0%, rgba(5, 8, 16, 0.5) 100%), url("/cyberpunk-bg.png")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
