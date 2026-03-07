@@ -91,7 +91,7 @@ export function MondrianGrid({ images }: { images: GalleryImage[] }) {
           gridTemplateColumns: `repeat(${SIZE}, 1fr)`,
           gridTemplateRows: `repeat(${SIZE}, 1fr)`,
           gap: "clamp(8px, 1.5vw, 16px)",
-          background: "#0a0a0a",
+          background: "var(--background)",
           padding: "clamp(8px, 1.5vw, 16px)",
           aspectRatio: "1 / 1",
         }}
