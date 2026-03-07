@@ -14,7 +14,7 @@ export function FolderNav() {
 
   return (
     <nav
-      className="flex justify-center border-b border-zinc-800 bg-[#0d0d0d] pb-0 pt-6"
+      className="sticky top-0 z-50 flex justify-center border-b border-zinc-800 bg-[#0d0d0d] pb-0 pt-6"
       aria-label="Main navigation"
     >
       <div className="flex gap-0">
