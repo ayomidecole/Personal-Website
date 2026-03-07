@@ -42,7 +42,7 @@ const galleryImages: { src: string; alt: string }[] = [
 
 export default function Gallery() {
   return (
-    <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6">
+    <div className="mx-auto w-full max-w-7xl overflow-x-hidden px-4 py-12 sm:px-6">
       <h1 className="mb-8 flex items-baseline gap-2 font-mono text-2xl font-bold tracking-tight text-[var(--foreground)]">
         <span className="terminal-prompt">&gt;</span>
         <span>Gallery</span>

@@ -81,12 +81,8 @@ export function MondrianGrid({ images }: { images: GalleryImage[] }) {
 
   return (
     <div
-      className="mx-auto"
-      style={{
-        width: "98vw",
-        maxWidth: "98vw",
-        aspectRatio: "1 / 1",
-      }}
+      className="mx-auto w-full max-w-full min-w-0"
+      style={{ aspectRatio: "1 / 1" }}
     >
       <div
         className="mondrian-grid w-full overflow-hidden"
