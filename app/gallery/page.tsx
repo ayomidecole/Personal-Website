@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { MondrianGrid } from "./MondrianGrid";
 
 const galleryImages: { src: string; alt: string }[] = [
   { src: "/gallery/01.png", alt: "Person traveling through time in a black hole" },
@@ -42,7 +42,7 @@ const galleryImages: { src: string; alt: string }[] = [
 
 export default function Gallery() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
+    <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6">
       <h1 className="mb-8 flex items-baseline gap-2 font-mono text-2xl font-bold tracking-tight text-[var(--foreground)]">
         <span className="terminal-prompt">&gt;</span>
         <span>Gallery</span>
@@ -60,24 +60,7 @@ export default function Gallery() {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:gap-8">
-          {galleryImages.map(({ src, alt }, index) => {
-            const frameStyle = `gallery-frame gallery-frame-${index % 6}`;
-            return (
-              <div key={src} className={frameStyle}>
-                <div className="relative aspect-square overflow-hidden bg-[var(--background)]">
-                  <Image
-                    src={src}
-                    alt={alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <MondrianGrid images={galleryImages} />
       )}
     </div>
   );
