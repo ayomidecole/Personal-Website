@@ -48,9 +48,6 @@ export default function Gallery() {
         <span>Gallery</span>
         <span className="terminal-cursor" aria-hidden />
       </h1>
-      <p className="mb-8 font-mono text-sm text-[var(--muted)]">
-        &gt; AI-generated images
-      </p>
       {galleryImages.length === 0 ? (
         <div className="panel rounded-lg border border-[var(--border)] bg-[var(--surface)] px-6 py-12 text-center">
           <p className="text-[var(--muted)]">
