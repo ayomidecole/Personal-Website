@@ -7,6 +7,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
   { href: "/blog", label: "Blog" },
+  { href: "/gallery", label: "Gallery" },
 ] as const;
 
 export function FolderNav() {
