@@ -123,8 +123,13 @@ export function MondrianGrid({ images }: { images: GalleryImage[] }) {
         width: rect.width,
         height: rect.height,
       });
+      // Defer collapse so browser paints current (expanded) state first, then transition runs to cell rect
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setExpanded(false));
+      });
+    } else {
+      setExpanded(false);
     }
-    setExpanded(false);
     closeTimeoutRef.current = setTimeout(() => {
       setSelectedSlot(null);
       setModalRect(null);
@@ -212,10 +217,10 @@ export function MondrianGrid({ images }: { images: GalleryImage[] }) {
                   ? {
                       top: "50%",
                       left: "50%",
-                      width: "min(85vw, 75vh)",
-                      height: "min(85vw, 75vh)",
-                      maxWidth: "900px",
-                      maxHeight: "900px",
+                      width: "min(92vw, 88vh)",
+                      height: "min(92vw, 88vh)",
+                      maxWidth: "1200px",
+                      maxHeight: "1200px",
                       transform: "translate(-50%, -50%)",
                       opacity: 1,
                     }
@@ -234,7 +239,7 @@ export function MondrianGrid({ images }: { images: GalleryImage[] }) {
                 alt={images[order[selectedSlot]]?.alt ?? ""}
                 fill
                 className="object-contain"
-                sizes="900px"
+                sizes="1200px"
               />
               <button
                 type="button"
