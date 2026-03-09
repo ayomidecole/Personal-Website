@@ -21,7 +21,7 @@ export default function Projects() {
             key={project.url}
             name={project.name}
             url={project.url}
-            defaultOpen={index === 0}
+            defaultOpen={false}
           />
         ))}
       </div>
