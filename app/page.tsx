@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <div className="mx-auto max-w-xl px-6 py-16 font-sans">
-      <div className="rounded-xl border-2 border-[var(--border)] bg-black/60 p-8 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+    <div className="mx-auto flex w-full max-w-[min(48rem,75vh)] flex-col px-6 py-12 font-sans">
+      <div className="aspect-square w-full overflow-auto rounded-xl border-2 border-[var(--border)] bg-black/60 p-8 sm:p-12 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.5)]">
         <h1 className="mb-6 flex items-baseline gap-2 font-mono text-2xl font-bold tracking-tight text-[var(--foreground)]">
           <span className="terminal-prompt">&gt;</span>
           <span>Your Name</span>
